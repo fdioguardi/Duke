@@ -4,7 +4,7 @@ package no.priv.garshol.duke.utils;
 import junit.framework.AssertionFailedError;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class StringUtilsTest {
 

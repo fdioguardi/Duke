@@ -16,9 +16,9 @@ import no.priv.garshol.duke.comparators.WeightedLevenshtein.DefaultWeightEstimat
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ConfigLoaderTest {
 

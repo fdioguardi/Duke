@@ -7,20 +7,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
-
 import no.priv.garshol.duke.matchers.AbstractMatchListener;
 import no.priv.garshol.duke.matchers.PrintMatchListener;
 import no.priv.garshol.duke.matchers.TestFileListener;
-import no.priv.garshol.duke.utils.YesNoConsole;
+import no.priv.garshol.duke.utils.CommandLineParser;
+import no.priv.garshol.duke.utils.LinkDatabaseUtils;
 import no.priv.garshol.duke.utils.LinkFileWriter;
 import no.priv.garshol.duke.utils.NTriplesWriter;
-import no.priv.garshol.duke.utils.LinkDatabaseUtils;
-import no.priv.garshol.duke.utils.CommandLineParser;
-
+import no.priv.garshol.duke.utils.YesNoConsole;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -51,8 +49,8 @@ public class Duke {
 
     // set up some initial options
     boolean datadebug = parser.getOptionState("showdata");
-    Logger logger = new CommandLineLogger(parser.getOptionState("verbose") ?
-                                          1 : 0);
+    Logger logger =
+        new CommandLineLogger(parser.getOptionState("verbose") ? 1 : 0);
     boolean progress = parser.getOptionState("progress");
     int count = 0;
     int batch_size = parser.getOptionInteger("batchsize", 40000);
@@ -66,12 +64,14 @@ public class Duke {
       System.err.println("ERROR: Config file '" + argv[0] + "' not found!");
       return;
     } catch (SAXParseException e) {
-      System.err.println("ERROR: Couldn't parse config file: " + e.getMessage());
+      System.err.println("ERROR: Couldn't parse config file: " +
+                         e.getMessage());
       System.err.println("Error in " + e.getSystemId() + ":" +
                          e.getLineNumber() + ":" + e.getColumnNumber());
       return;
     } catch (SAXException e) {
-      System.err.println("ERROR: Couldn't parse config file: " + e.getMessage());
+      System.err.println("ERROR: Couldn't parse config file: " +
+                         e.getMessage());
       return;
     }
 
@@ -93,8 +93,8 @@ public class Duke {
 
     // sanity check
     if (noreindex && processor.getDatabase().isInMemory()) {
-      System.out.println("Option --noreindex not available with in-memory " +
-                         "database");
+      System.out.println("Option --noreindex not available with in-memory "
+                         + "database");
       return;
     }
 
@@ -109,37 +109,32 @@ public class Duke {
     boolean interactive = parser.getOptionState("interactive");
     boolean pretty = parser.getOptionState("pretty") || interactive;
     boolean showmatches = parser.getOptionState("showmatches") || interactive;
-    PrintMatchListener listener =
-      new PrintMatchListener(showmatches,
-                             parser.getOptionState("showmaybe"),
-                             progress,
-                             !config.isDeduplicationMode(),
-                             config.getProperties(),
-                             pretty);
+    PrintMatchListener listener = new PrintMatchListener(
+        showmatches, parser.getOptionState("showmaybe"), progress,
+        !config.isDeduplicationMode(), config.getProperties(), pretty);
     processor.addMatchListener(listener);
 
     // needs to be before the link file handler, in case the link file
     // is the same as the test file
     TestFileListener testfile = null;
     if (parser.getOptionValue("testfile") != null) {
-      testfile = new TestFileListener(parser.getOptionValue("testfile"),
-                                      config,
+      testfile = new TestFileListener(parser.getOptionValue("testfile"), config,
                                       parser.getOptionState("testdebug"),
-                                      processor,
-                                      showmatches,
-                                      pretty);
+                                      processor, showmatches, pretty);
       testfile.setPessimistic(true);
       processor.addMatchListener(testfile);
 
       if (testfile.isEmpty())
-        System.out.println("WARN: Test file is empty. Did you mean --linkfile?");
+        System.out.println(
+            "WARN: Test file is empty. Did you mean --linkfile?");
     }
 
     AbstractLinkFileListener linkfile = null;
     if (parser.getOptionValue("linkfile") != null) {
       String fname = parser.getOptionValue("linkfile");
       if (fname.endsWith(".ntriples"))
-        linkfile = new NTriplesLinkFileListener(fname, config.getIdentityProperties());
+        linkfile =
+            new NTriplesLinkFileListener(fname, config.getIdentityProperties());
       else
         linkfile = new LinkFileListener(fname, config.getIdentityProperties(),
                                         interactive,
@@ -155,7 +150,8 @@ public class Duke {
     boolean matchall = true;
     if (parser.getOptionState("singlematch")) {
       if (config.isDeduplicationMode())
-        throw new DukeConfigException("--singlematch only works in record linkage mode");
+        throw new DukeConfigException(
+            "--singlematch only works in record linkage mode");
       matchall = false;
     }
 
@@ -172,10 +168,8 @@ public class Duke {
         // case we just do the linking, and don't touch group 1 at all.
         processor.linkRecords(config.getDataSources(2), matchall);
       } else
-        processor.link(config.getDataSources(1),
-                       config.getDataSources(2),
-                       matchall,
-                       batch_size);
+        processor.link(config.getDataSources(1), config.getDataSources(2),
+                       matchall, batch_size);
     }
 
     // close up shop, then finish
@@ -206,21 +200,31 @@ public class Duke {
     System.out.println("");
     System.out.println("java no.priv.garshol.duke.Duke [options] <cfgfile>");
     System.out.println("");
-    System.out.println("  --progress            show progress report while running");
+    System.out.println(
+        "  --progress            show progress report while running");
     System.out.println("  --showmatches         show matches while running");
     System.out.println("  --linkfile=<file>     output matches to link file");
-    System.out.println("  --interactive         query user before outputting link file matches");
-    System.out.println("  --testfile=<file>     test matches against known correct results in file");
+    System.out.println(
+        "  --interactive         query user before outputting link file matches");
+    System.out.println(
+        "  --testfile=<file>     test matches against known correct results in file");
     System.out.println("  --testdebug           display failures");
     System.out.println("  --verbose             display diagnostics");
     System.out.println("  --noreindex           reuse existing Lucene index");
-    System.out.println("  --batchsize=n         set size of Lucene indexing batches");
-    System.out.println("  --showdata            show all cleaned data (data debug mode)");
-    System.out.println("  --profile             display performance statistics");
-    System.out.println("  --threads=N           run processing in N parallell threads");
-    System.out.println("  --pretty              pretty display when comparing records");
-    System.out.println("  --singlematch         (in record linkage mode) only accept");
-    System.out.println("                        the best match for each record");
+    System.out.println(
+        "  --batchsize=n         set size of Lucene indexing batches");
+    System.out.println(
+        "  --showdata            show all cleaned data (data debug mode)");
+    System.out.println(
+        "  --profile             display performance statistics");
+    System.out.println(
+        "  --threads=N           run processing in N parallell threads");
+    System.out.println(
+        "  --pretty              pretty display when comparing records");
+    System.out.println(
+        "  --singlematch         (in record linkage mode) only accept");
+    System.out.println(
+        "                        the best match for each record");
     System.out.println("  --lookups             display lookup properties");
     System.out.println("");
     System.out.println("Duke version " + getVersionString());
@@ -254,8 +258,8 @@ public class Duke {
   public static String getVersionString() {
     Properties props = getProperties();
     return props.getProperty("duke.version") + ", build " +
-           props.getProperty("duke.build") + ", built by " +
-           props.getProperty("duke.builder");
+        props.getProperty("duke.build") + ", built by " +
+        props.getProperty("duke.builder");
   }
 
   public static String getVersion() {
@@ -266,7 +270,8 @@ public class Duke {
     if (properties == null) {
       properties = new Properties();
       try {
-        InputStream in = Duke.class.getClassLoader().getResourceAsStream("no/priv/garshol/duke/duke.properties");
+        InputStream in = Duke.class.getClassLoader().getResourceAsStream(
+            "no/priv/garshol/duke/duke.properties");
         properties.load(in);
         in.close();
       } catch (IOException e) {
@@ -283,11 +288,10 @@ public class Duke {
       this.idprops = idprops;
     }
 
-    public void close() throws IOException {
-    }
+    public void close() throws IOException {}
 
     public abstract void link(String id1, String id2, double confidence)
-      throws IOException;
+        throws IOException;
 
     public void matches(Record r1, Record r2, double confidence) {
       try {
@@ -309,7 +313,7 @@ public class Duke {
 
     public LinkFileListener(String linkfile, Collection<Property> idprops,
                             boolean interactive, String testfile)
-      throws IOException {
+        throws IOException {
       super(idprops);
       if (interactive) {
         this.console = new YesNoConsole();
@@ -329,7 +333,7 @@ public class Duke {
     }
 
     public void link(String id1, String id2, double confidence)
-      throws IOException {
+        throws IOException {
       boolean correct = true;
 
       // does this provide new information, or do we know it already?
@@ -360,9 +364,7 @@ public class Duke {
       }
     }
 
-    public void close() throws IOException {
-      out.close();
-    }
+    public void close() throws IOException { out.close(); }
   }
 
   static class NTriplesLinkFileListener extends AbstractLinkFileListener {
@@ -371,14 +373,14 @@ public class Duke {
 
     public NTriplesLinkFileListener(String linkfile,
                                     Collection<Property> idprops)
-      throws IOException {
+        throws IOException {
       super(idprops);
       this.fos = new FileOutputStream(linkfile);
       this.out = new NTriplesWriter(fos);
     }
 
     public void link(String id1, String id2, double confidence)
-      throws IOException {
+        throws IOException {
       out.statement(id1, "http://www.w3.org/2002/07/owl#sameAs", id2, false);
     }
 
@@ -391,9 +393,7 @@ public class Duke {
   static class CommandLineLogger implements Logger {
     private int loglevel; // 1: trace, 2: debug, 3: info, 4: warn, 5: error
 
-    private CommandLineLogger(int loglevel) {
-      this.loglevel = loglevel;
-    }
+    private CommandLineLogger(int loglevel) { this.loglevel = loglevel; }
 
     public void trace(String msg) {
       if (isTraceEnabled())
@@ -410,9 +410,7 @@ public class Duke {
         System.out.println(msg);
     }
 
-    public void warn(String msg) {
-      warn(msg, null);
-    }
+    public void warn(String msg) { warn(msg, null); }
 
     public void warn(String msg, Throwable e) {
       if (!isWarnEnabled())
@@ -422,9 +420,7 @@ public class Duke {
       e.printStackTrace();
     }
 
-    public void error(String msg) {
-      error(msg, null);
-    }
+    public void error(String msg) { error(msg, null); }
 
     public void error(String msg, Throwable e) {
       if (!isErrorEnabled())
@@ -434,24 +430,14 @@ public class Duke {
       e.printStackTrace();
     }
 
-    public boolean isTraceEnabled() {
-      return loglevel == 1;
-    }
+    public boolean isTraceEnabled() { return loglevel == 1; }
 
-    public boolean isDebugEnabled() {
-      return loglevel != 0 && loglevel < 3;
-    }
+    public boolean isDebugEnabled() { return loglevel != 0 && loglevel < 3; }
 
-    public boolean isInfoEnabled() {
-      return loglevel != 0 && loglevel < 4;
-    }
+    public boolean isInfoEnabled() { return loglevel != 0 && loglevel < 4; }
 
-    public boolean isWarnEnabled() {
-      return loglevel != 0 && loglevel < 5;
-    }
+    public boolean isWarnEnabled() { return loglevel != 0 && loglevel < 5; }
 
-    public boolean isErrorEnabled() {
-      return loglevel != 0 && loglevel < 6;
-    }
+    public boolean isErrorEnabled() { return loglevel != 0 && loglevel < 6; }
   }
 }

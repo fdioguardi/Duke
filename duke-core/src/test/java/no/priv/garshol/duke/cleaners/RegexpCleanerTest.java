@@ -4,7 +4,7 @@ package no.priv.garshol.duke.cleaners;
 import no.priv.garshol.duke.cleaners.RegexpCleaner;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class RegexpCleanerTest extends LowerCaseNormalizeCleanerTest {
 

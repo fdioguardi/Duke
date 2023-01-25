@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Test;
 import org.xml.sax.InputSource;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class SparqlClientTest {
 

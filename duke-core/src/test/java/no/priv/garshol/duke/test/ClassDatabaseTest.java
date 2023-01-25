@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import no.priv.garshol.duke.EquivalenceClassDatabase;
 

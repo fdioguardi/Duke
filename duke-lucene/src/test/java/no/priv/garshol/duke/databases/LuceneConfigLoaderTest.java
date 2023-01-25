@@ -9,7 +9,7 @@ import no.priv.garshol.duke.Database;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class LuceneConfigLoaderTest {
 

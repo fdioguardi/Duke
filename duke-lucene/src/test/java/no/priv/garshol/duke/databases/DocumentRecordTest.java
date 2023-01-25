@@ -20,8 +20,8 @@ import org.apache.lucene.index.CorruptIndexException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DocumentRecordTest {
   private Database db;

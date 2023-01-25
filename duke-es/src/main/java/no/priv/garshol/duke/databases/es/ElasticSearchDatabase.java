@@ -1,22 +1,7 @@
 package no.priv.garshol.duke.databases.es;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import no.priv.garshol.duke.Configuration;
-import no.priv.garshol.duke.Database;
-import no.priv.garshol.duke.DukeConfigException;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.RecordImpl;
+import no.priv.garshol.duke.*;
 import no.priv.garshol.duke.utils.Utils;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -42,6 +27,14 @@ import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
 import org.elasticsearch.search.SearchHit;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ElasticSearchDatabase implements Database {
 

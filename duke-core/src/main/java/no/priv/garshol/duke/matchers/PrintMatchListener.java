@@ -28,7 +28,7 @@ public class PrintMatchListener extends AbstractMatchListener {
    * @param showmatches Whether to display matches. (On cmd-line: --showmatches)
    * @param showmaybe Whether to display maybe-matches. --showmaybe
    * @param progress Whether to display progress reports. --progress
-   * @param linkage True iff in record linkage mode.
+   * @param linkage True if in record linkage mode.
    * @param pretty Whether to pretty-print records (not compact).
    */
   public PrintMatchListener(boolean showmatches, boolean showmaybe,
