@@ -191,6 +191,9 @@ TO PUBLISH SNAPSHOTS
                         </executions>
                     </plugin>
 
+                    <!-- generate executable jar -->
+
+
                     <!-- generating sources.jar (for sonatype) -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

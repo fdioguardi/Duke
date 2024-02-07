@@ -12,7 +12,7 @@ public class JaccardIndexComparator implements Comparator {
   private Comparator subcomp;
   
   public JaccardIndexComparator() {
-    this.subcomp = new ExactComparator();
+    this.subcomp = new Levenshtein();
   }
 
   public void setComparator(Comparator comp) {
