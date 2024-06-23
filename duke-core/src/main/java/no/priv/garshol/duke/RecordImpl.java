@@ -1,10 +1,6 @@
 package no.priv.garshol.duke;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * Previously the default implementation of the Record interface; now
@@ -57,7 +53,7 @@ public class RecordImpl implements ModifiableRecord {
     data.remove(property);
   }
   
-  public void merge(Record other) {
+  public void merge(no.priv.garshol.duke.Record other) {
     throw new UnsupportedOperationException();
   }
 

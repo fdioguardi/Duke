@@ -1,13 +1,13 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.io.IOException;
-import org.xml.sax.SAXException;
-
-import no.priv.garshol.duke.Duke;
 import no.priv.garshol.duke.ConfigLoader;
 import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Duke;
 import no.priv.garshol.duke.utils.CommandLineParser;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 
 /**
  * Command-line interface to the genetic algorithm.

@@ -1,11 +1,11 @@
 
 package no.priv.garshol.duke.datasources;
 
+import no.priv.garshol.duke.Cleaner;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Pattern;
-
-import no.priv.garshol.duke.Cleaner;
 
 public class Column {
   private String name;

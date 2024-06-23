@@ -1,26 +1,12 @@
 
 package no.priv.garshol.duke.matchers;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import no.priv.garshol.duke.*;
+import no.priv.garshol.duke.utils.LinkDatabaseUtils;
+
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import no.priv.garshol.duke.Link;
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.Database;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.LinkKind;
-import no.priv.garshol.duke.Processor;
-import no.priv.garshol.duke.LinkStatus;
-import no.priv.garshol.duke.LinkDatabase;
-import no.priv.garshol.duke.Configuration;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.InMemoryLinkDatabase;
-import no.priv.garshol.duke.utils.LinkDatabaseUtils;
 
 /**
  * A match listener for evaluating Duke configurations against a set
@@ -102,7 +88,7 @@ public class TestFileListener extends AbstractMatchListener {
     return golddb.getAllLinks().isEmpty();
   }
 
-  public synchronized void matches(Record r1, Record r2, double confidence) {
+  public synchronized void matches(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
     String id1 = getid(r1);
     String id2 = getid(r2);
 
@@ -130,7 +116,7 @@ public class TestFileListener extends AbstractMatchListener {
     }
   }
 
-  public synchronized void noMatchFor(Record r) {
+  public synchronized void noMatchFor(no.priv.garshol.duke.Record r) {
     // we missed all of the correct links for this record (if any).
     // count, and tell the user.
     for (Link link : golddb.getAllLinksFor(getid(r))) {
@@ -139,8 +125,8 @@ public class TestFileListener extends AbstractMatchListener {
 
       missed++;
 
-      Record r1 = database.findRecordById(link.getID1());
-      Record r2 = database.findRecordById(link.getID2());
+      no.priv.garshol.duke.Record r1 = database.findRecordById(link.getID1());
+      no.priv.garshol.duke.Record r2 = database.findRecordById(link.getID2());
       if (r1 != null && r2 != null) {
         if (debug && !showmatches)
           PrintMatchListener.show(r1, r2, processor.compare(r1, r2),
@@ -222,7 +208,7 @@ public class TestFileListener extends AbstractMatchListener {
     return "" + (p / 10.0);
   }
 
-  private String getid(Record r) {
+  private String getid(no.priv.garshol.duke.Record r) {
     for (Property p : idprops) {
       String v = r.getValue(p.getName());
       if (v == null)

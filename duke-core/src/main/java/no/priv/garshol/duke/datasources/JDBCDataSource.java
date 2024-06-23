@@ -1,16 +1,16 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-
 import no.priv.garshol.duke.ConfigWriter;
 import no.priv.garshol.duke.DukeException;
 import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.RecordIterator;
 import no.priv.garshol.duke.utils.JDBCUtils;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 
 public class JDBCDataSource extends ColumnarDataSource {
   private String jdbcuri;

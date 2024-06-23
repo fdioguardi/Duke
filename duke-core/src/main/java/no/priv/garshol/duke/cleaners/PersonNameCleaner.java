@@ -2,15 +2,15 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-
 import no.priv.garshol.duke.Cleaner;
 import no.priv.garshol.duke.utils.StringUtils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <b>Experimental</b> cleaner for person names, which understands

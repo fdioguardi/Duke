@@ -1,8 +1,8 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Iterator;
 import java.util.Collection;
+import java.util.Iterator;
 
 // FIXME: if we are going to implement retraction we will need
 // something like a linkdatabase as backing. probably equiv dbs need

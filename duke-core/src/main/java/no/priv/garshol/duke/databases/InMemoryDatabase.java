@@ -1,15 +1,15 @@
 
 package no.priv.garshol.duke.databases;
 
-import java.util.Map;
-import java.util.HashMap;
+import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Database;
+import no.priv.garshol.duke.Property;
+import no.priv.garshol.duke.Record;
+
 import java.util.ArrayList;
 import java.util.Collection;
-
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.Database;
-import no.priv.garshol.duke.Configuration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Naïve in-memory store of records. Matches all records against all

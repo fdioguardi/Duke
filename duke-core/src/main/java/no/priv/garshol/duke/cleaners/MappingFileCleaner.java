@@ -1,14 +1,14 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.io.FileReader;
-import java.io.IOException;
-
 import no.priv.garshol.duke.Cleaner;
 import no.priv.garshol.duke.DukeException;
 import no.priv.garshol.duke.utils.CSVReader;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 // FIXME: we may also want an option to allow unmapped values to be
 // returned as is (or even via the sub-cleaner)

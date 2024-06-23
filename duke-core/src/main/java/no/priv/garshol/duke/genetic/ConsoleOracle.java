@@ -1,14 +1,14 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.io.Writer;
+import no.priv.garshol.duke.DukeException;
+import no.priv.garshol.duke.LinkKind;
+import no.priv.garshol.duke.utils.LinkFileWriter;
+import no.priv.garshol.duke.utils.YesNoConsole;
+
 import java.io.FileWriter;
 import java.io.IOException;
-
-import no.priv.garshol.duke.LinkKind;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.utils.YesNoConsole;
-import no.priv.garshol.duke.utils.LinkFileWriter;
+import java.io.Writer;
 
 /**
  * This oracle asks the user via the console.

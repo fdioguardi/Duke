@@ -1,13 +1,13 @@
 
 package no.priv.garshol.duke;
 
+import no.priv.garshol.duke.utils.XMLPrettyPrinter;
+import org.xml.sax.helpers.AttributeListImpl;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-
-import no.priv.garshol.duke.utils.XMLPrettyPrinter;
-import org.xml.sax.helpers.AttributeListImpl;
 
 /**
  * Can write XML configuration files. <b>WARNING</b>: It does not

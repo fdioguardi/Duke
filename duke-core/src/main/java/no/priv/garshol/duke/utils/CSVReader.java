@@ -1,9 +1,10 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.io.Reader;
-import java.io.IOException;
 import no.priv.garshol.duke.DukeException;
+
+import java.io.IOException;
+import java.io.Reader;
 
 public class CSVReader {
   private Reader in;

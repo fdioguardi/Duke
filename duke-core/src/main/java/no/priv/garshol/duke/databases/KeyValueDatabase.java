@@ -1,19 +1,13 @@
 
 package no.priv.garshol.duke.databases;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.Database;
 import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Database;
+import no.priv.garshol.duke.Property;
+import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.utils.StringUtils;
+
+import java.util.*;
 
 /**
  * A database that uses a key-value store to index and find records.

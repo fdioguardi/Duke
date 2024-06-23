@@ -1,9 +1,9 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Properties;
-
 import no.priv.garshol.duke.utils.JDBCUtils;
+
+import java.util.Properties;
 
 /**
  * A link database which can maintain a set of links in an H2 or

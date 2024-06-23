@@ -1,20 +1,11 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.util.Collection;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import no.priv.garshol.duke.ConfigWriter;
-import no.priv.garshol.duke.DukeConfigException;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.RecordIterator;
+import no.priv.garshol.duke.*;
 import no.priv.garshol.duke.utils.CSVReader;
+
+import java.io.*;
+import java.util.Collection;
 
 public class CSVDataSource extends ColumnarDataSource {
   private String file;
@@ -139,7 +130,7 @@ public class CSVDataSource extends ColumnarDataSource {
     private int[] index;     // what index in row to find column[ix] value in
     private Column[] column; // all the columns, in random order
     private RecordBuilder builder;
-    private Record nextrecord;
+    private no.priv.garshol.duke.Record nextrecord;
 
     public CSVRecordIterator(CSVReader reader) throws IOException {
       this.reader = reader;
@@ -227,8 +218,8 @@ public class CSVDataSource extends ColumnarDataSource {
       return (nextrecord != null);
     }
 
-    public Record next() {
-      Record thenext = nextrecord;
+    public no.priv.garshol.duke.Record next() {
+      no.priv.garshol.duke.Record thenext = nextrecord;
       findNextRecord();
       return thenext;
     }

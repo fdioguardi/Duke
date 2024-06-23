@@ -1,17 +1,11 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Collections;
-
-import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.matchers.AbstractMatchListener;
+
+import java.util.*;
 
 /**
  * A listener to decide which potential matches to ask the oracle

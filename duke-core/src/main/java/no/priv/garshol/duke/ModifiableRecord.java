@@ -6,7 +6,7 @@ package no.priv.garshol.duke;
  * used by RecordBuilder.
  * @since 1.2
  */
-public interface ModifiableRecord extends Record {
+public interface ModifiableRecord extends no.priv.garshol.duke.Record {
 
   /**
    * Adds a new value to the record.

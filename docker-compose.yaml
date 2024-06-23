@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  duke:
+    read_only: true
+    build:
+      context: .
+    volumes:
+      - type: bind
+        source: ./
+        target: /opt/duke/

@@ -1,13 +1,11 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.Comparator;
 import no.priv.garshol.duke.Configuration;
-import no.priv.garshol.duke.utils.ObjectUtils;
+import no.priv.garshol.duke.Property;
+
+import java.util.List;
 
 /**
  * Sets the comparator.

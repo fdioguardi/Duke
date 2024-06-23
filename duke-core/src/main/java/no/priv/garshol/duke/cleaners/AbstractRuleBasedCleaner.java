@@ -1,12 +1,10 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 import no.priv.garshol.duke.Cleaner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper class for building regular-expression based cleaners.

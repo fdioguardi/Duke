@@ -1,14 +1,14 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Collection;
-import java.io.Writer;
-import java.io.IOException;
-
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.Configuration;
 import no.priv.garshol.duke.DukeException;
+import no.priv.garshol.duke.Property;
+import no.priv.garshol.duke.Record;
+
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Collection;
 
 /**
  * Utility class for writing link files. The format is
@@ -29,7 +29,7 @@ public class LinkFileWriter {
       this.idprops = config.getIdentityProperties();
   }
 
-  public void write(Record r1, Record r2, boolean match, double confidence)
+  public void write(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, boolean match, double confidence)
     throws IOException {
     write(getid(r1), getid(r2), match, confidence);
   }
@@ -40,7 +40,7 @@ public class LinkFileWriter {
               "\n");
   }
   
-  private String getid(Record r) {
+  private String getid(no.priv.garshol.duke.Record r) {
     for (Property p : idprops) {
       String v = r.getValue(p.getName());
       if (v == null)

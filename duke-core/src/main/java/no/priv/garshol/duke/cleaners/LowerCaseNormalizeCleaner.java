@@ -1,9 +1,9 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.text.Normalizer;
-
 import no.priv.garshol.duke.Cleaner;
+
+import java.text.Normalizer;
 
 /**
  * A cleaner which removes leading and trailing whitespace, normalized

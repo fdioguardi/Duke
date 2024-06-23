@@ -1,11 +1,10 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.io.Serializable;
+import java.util.HashSet;
 
 /**
  * An implementation of the Record interface which uses less memory
@@ -47,7 +46,7 @@ public class CompactRecord implements ModifiableRecord, Serializable {
     return null;
   }
 
-  public void merge(Record other) {
+  public void merge(no.priv.garshol.duke.Record other) {
     throw new UnsupportedOperationException();
   }
 

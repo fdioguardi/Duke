@@ -1,18 +1,6 @@
 
 package no.priv.garshol.duke;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import no.priv.garshol.duke.cleaners.ChainedCleaner;
 import no.priv.garshol.duke.datasources.Column;
 import no.priv.garshol.duke.datasources.ColumnarDataSource;
@@ -24,6 +12,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Can read XML configuration files and return a fully set up configuration.

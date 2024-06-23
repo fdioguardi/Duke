@@ -1,13 +1,13 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.io.IOException;
-
-import no.priv.garshol.duke.Link;
-import no.priv.garshol.duke.LinkKind;
-import no.priv.garshol.duke.LinkDatabase;
 import no.priv.garshol.duke.InMemoryLinkDatabase;
+import no.priv.garshol.duke.Link;
+import no.priv.garshol.duke.LinkDatabase;
+import no.priv.garshol.duke.LinkKind;
 import no.priv.garshol.duke.utils.LinkDatabaseUtils;
+
+import java.io.IOException;
 
 /**
  * This oracle looks up the answer in a link file.

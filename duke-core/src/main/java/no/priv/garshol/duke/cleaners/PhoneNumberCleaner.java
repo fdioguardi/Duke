@@ -1,9 +1,10 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.Map;
-import java.util.HashMap;
 import no.priv.garshol.duke.Cleaner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>Cleaner for international phone numbers. It assumes that it can

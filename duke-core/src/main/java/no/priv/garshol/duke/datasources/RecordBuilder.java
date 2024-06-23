@@ -1,13 +1,12 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.util.Collection;
-
-import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.Cleaner;
-import no.priv.garshol.duke.RecordImpl;
 import no.priv.garshol.duke.CompactRecord;
 import no.priv.garshol.duke.ModifiableRecord;
+import no.priv.garshol.duke.Record;
+
+import java.util.Collection;
 
 /**
  * Helper class for building records, to avoid having to copy all the

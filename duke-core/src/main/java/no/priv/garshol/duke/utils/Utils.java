@@ -1,10 +1,10 @@
 
 package no.priv.garshol.duke.utils;
 
+import no.priv.garshol.duke.DukeException;
+
 import java.io.File;
 import java.io.IOException;
-
-import no.priv.garshol.duke.DukeException;
 
 public class Utils {
 

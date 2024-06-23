@@ -1,16 +1,16 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import no.priv.garshol.duke.ConfigWriter;
 import no.priv.garshol.duke.DukeConfigException;
 import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.RecordIterator;
 import no.priv.garshol.duke.utils.SparqlClient;
 import no.priv.garshol.duke.utils.SparqlResult;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class SparqlDataSource extends ColumnarDataSource {
   private static final int DEFAULT_PAGE_SIZE = 1000;
@@ -188,7 +188,7 @@ public class SparqlDataSource extends ColumnarDataSource {
 
   class TripleModeIterator extends SparqlIterator {
 
-    public Record next() {
+    public no.priv.garshol.duke.Record next() {
       String resource = page.get(pagerow)[0];
 
       Collection<Column> cols = columns.get("?uri");
@@ -221,7 +221,7 @@ public class SparqlDataSource extends ColumnarDataSource {
 
   class TabularIterator extends SparqlIterator {
 
-    public Record next() {
+    public no.priv.garshol.duke.Record next() {
       builder.newRecord();
 
       for (int colix = 0; colix < variables.size(); colix++) {

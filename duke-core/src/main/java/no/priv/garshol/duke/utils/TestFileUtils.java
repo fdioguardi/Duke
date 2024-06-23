@@ -1,15 +1,15 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.BufferedReader;
-
 import no.priv.garshol.duke.Link;
 import no.priv.garshol.duke.LinkKind;
 import no.priv.garshol.duke.LinkStatus;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A utility class for loading link files. <b>Deprecated:</b> Please

@@ -1,11 +1,11 @@
 
 package no.priv.garshol.duke.matchers;
 
-import java.util.List;
-import java.util.Collection;
-
-import no.priv.garshol.duke.Record;
 import no.priv.garshol.duke.Property;
+import no.priv.garshol.duke.Record;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Match listener which prints events to standard out. Used by the
@@ -54,7 +54,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     records += size;
   }
   
-  public void matches(Record r1, Record r2, double confidence) {
+  public void matches(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
     matches++;
     if (showmatches) {
       if (pretty)
@@ -66,7 +66,7 @@ public class PrintMatchListener extends AbstractMatchListener {
       System.out.println("" + matches + "  matches");
   }
 
-  public void matchesPerhaps(Record r1, Record r2, double confidence) {
+  public void matchesPerhaps(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
     if (showmaybe) {
       if (pretty)
         prettyCompare(r1, r2, confidence, "\nMAYBE MATCH", properties);
@@ -84,7 +84,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     }
   }
 
-  public void noMatchFor(Record record) {
+  public void noMatchFor(no.priv.garshol.duke.Record record) {
     nonmatches++;
     if (showmatches && linkage)
       System.out.println("\nNO MATCH FOR:\n" + toString(record, properties));
@@ -92,14 +92,14 @@ public class PrintMatchListener extends AbstractMatchListener {
   
   // =====
   
-  public static void show(Record r1, Record r2, double confidence,
+  public static void show(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence,
                           String heading, List<Property> props) {
     System.out.println(heading + " " + confidence);      
     System.out.println(toString(r1, props));
     System.out.println(toString(r2, props));
   }
 
-  public static void show(Record r1, Record r2, double confidence,
+  public static void show(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence,
                           String heading, List<Property> props,
                           boolean pretty) {
     if (pretty)
@@ -109,7 +109,7 @@ public class PrintMatchListener extends AbstractMatchListener {
   }
   
   // mostly used in error messages
-  public static String toString(Record r) {
+  public static String toString(no.priv.garshol.duke.Record r) {
     StringBuffer buf = new StringBuffer();
     for (String p : r.getProperties()) {
       Collection<String> vs = r.getValues(p);
@@ -125,7 +125,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     return buf.toString();
   }
   
-  public static String toString(Record r, List<Property> props) {
+  public static String toString(no.priv.garshol.duke.Record r, List<Property> props) {
     StringBuffer buf = new StringBuffer();
     for (Property p : props) {
       Collection<String> vs = r.getValues(p.getName());
@@ -141,7 +141,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     return buf.toString();
   }
   
-  public static void prettyCompare(Record r1, Record r2, double confidence,
+  public static void prettyCompare(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence,
                                    String heading, List<Property> props) {
     System.out.println(heading + " " + confidence);
 
@@ -157,7 +157,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     }
   }
 
-  public static void prettyPrint(Record r, List<Property> props) {
+  public static void prettyPrint(no.priv.garshol.duke.Record r, List<Property> props) {
     for (Property p : props) {
       String prop = p.getName();
       if (r.getValues(prop) == null || r.getValues(prop).isEmpty())
@@ -167,7 +167,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     }
   }
   
-  public static void htmlCompare(Record r1, Record r2, double confidence,
+  public static void htmlCompare(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence,
                                    String heading, List<Property> props) {
     System.out.println("<p>" + heading + " " + confidence + "</p>");
 
@@ -185,7 +185,7 @@ public class PrintMatchListener extends AbstractMatchListener {
     System.out.println("</table>");
   }
   
-  private static String value(Record r, String p) {
+  private static String value(no.priv.garshol.duke.Record r, String p) {
     Collection<String> vs = r.getValues(p);
     if (vs == null)
       return "<null>";

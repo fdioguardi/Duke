@@ -1,8 +1,8 @@
 
 package no.priv.garshol.duke;
 
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
 
 public interface Configuration {
 

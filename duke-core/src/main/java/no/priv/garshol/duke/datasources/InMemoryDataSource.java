@@ -1,14 +1,10 @@
 package no.priv.garshol.duke.datasources;
 
+import no.priv.garshol.duke.*;
+import no.priv.garshol.duke.utils.DefaultRecordIterator;
+
 import java.util.ArrayList;
 import java.util.Collection;
-
-import no.priv.garshol.duke.ConfigWriter;
-import no.priv.garshol.duke.DataSource;
-import no.priv.garshol.duke.Logger;
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.RecordIterator;
-import no.priv.garshol.duke.utils.DefaultRecordIterator;
 
 /**
  * Data source which can be passed Record objects, and which then
@@ -19,20 +15,20 @@ public class InMemoryDataSource implements DataSource {
   /**
    * The records held by the data source.
    */
-  protected Collection<Record> records;
+  protected Collection<no.priv.garshol.duke.Record> records;
 
   /**
    * Creates an empty source.
    */
   public InMemoryDataSource() {
-    this.records = new ArrayList<Record>();
+    this.records = new ArrayList<no.priv.garshol.duke.Record>();
   }
 
   /**
    * Creates a source populated with the records in the
    * <tt>records</tt> parameter.
    */
-  public InMemoryDataSource(Collection<Record> records) {
+  public InMemoryDataSource(Collection<no.priv.garshol.duke.Record> records) {
     this.records = records;
   }
 
@@ -51,7 +47,7 @@ public class InMemoryDataSource implements DataSource {
   /**
    * Adds a record to the collection held by the source.
    */
-  public void add(Record record) {
+  public void add(no.priv.garshol.duke.Record record) {
     records.add(record);
   }
 

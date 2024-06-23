@@ -1,16 +1,16 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import no.priv.garshol.duke.ConfigWriter;
 import no.priv.garshol.duke.DataSource;
 import no.priv.garshol.duke.DukeConfigException;
 import no.priv.garshol.duke.Logger;
 import org.xml.sax.helpers.AttributeListImpl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Abstract class for sharing code that is common to column-based data

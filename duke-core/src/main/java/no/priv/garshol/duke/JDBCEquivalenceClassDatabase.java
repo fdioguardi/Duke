@@ -1,16 +1,12 @@
 
 package no.priv.garshol.duke;
 
+import no.priv.garshol.duke.utils.JDBCUtils;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
-import no.priv.garshol.duke.utils.JDBCUtils;
+import java.util.*;
 
 /**
  * An eq. class database using an RDBMS as backing.

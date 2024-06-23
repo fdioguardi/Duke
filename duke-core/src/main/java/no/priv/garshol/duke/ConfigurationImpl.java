@@ -1,14 +1,9 @@
 
 package no.priv.garshol.duke;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import no.priv.garshol.duke.utils.Utils;
+
+import java.util.*;
 
 /**
  * Holds the configuration details for a dataset.

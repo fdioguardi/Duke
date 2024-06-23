@@ -1,25 +1,11 @@
 
 package no.priv.garshol.duke.datasources;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-
-import no.priv.garshol.duke.ConfigWriter;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.RecordImpl;
-import no.priv.garshol.duke.RecordIterator;
-import no.priv.garshol.duke.StatementHandler;
+import no.priv.garshol.duke.*;
 import no.priv.garshol.duke.utils.NTriplesParser;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * A data source which can read RDF data from NTriples files. By
@@ -115,7 +101,7 @@ public class NTriplesDataSource extends ColumnarDataSource {
     record.addValue(property, object);      
   }
 
-  private boolean filterbytype(Record record) {
+  private boolean filterbytype(no.priv.garshol.duke.Record record) {
     if (types.isEmpty()) // there is no filtering
       return true;
       
@@ -187,10 +173,10 @@ public class NTriplesDataSource extends ColumnarDataSource {
   // --- default mode
 
   public class DefaultRecordIterator extends RecordIterator {
-    private Record next;
-    private Iterator<Record> it;
+    private no.priv.garshol.duke.Record next;
+    private Iterator<no.priv.garshol.duke.Record> it;
     
-    public DefaultRecordIterator(Iterator<Record> it) {
+    public DefaultRecordIterator(Iterator<no.priv.garshol.duke.Record> it) {
       this.it = it;
       findNext();
     }
@@ -199,11 +185,11 @@ public class NTriplesDataSource extends ColumnarDataSource {
       return next != null;
     }
     
-    public Record next() {
+    public no.priv.garshol.duke.Record next() {
       if (next == null)
         return it.next(); // will throw exception
 
-      Record tmp = next;
+      no.priv.garshol.duke.Record tmp = next;
       findNext();
       return tmp;
     }
@@ -225,7 +211,7 @@ public class NTriplesDataSource extends ColumnarDataSource {
 
     private BufferedReader reader;
     private NTriplesParser parser;
-    private Record nextrecord;
+    private no.priv.garshol.duke.Record nextrecord;
     private String subject;
     private String property;
     private String object;
@@ -241,8 +227,8 @@ public class NTriplesDataSource extends ColumnarDataSource {
       return nextrecord != null;
     }
     
-    public Record next() {
-      Record record = nextrecord;
+    public no.priv.garshol.duke.Record next() {
+      no.priv.garshol.duke.Record record = nextrecord;
       findNextRecord();
       return record;
     }
@@ -277,7 +263,7 @@ public class NTriplesDataSource extends ColumnarDataSource {
     }
 
     // this finds the next record in the data stream
-    private Record parseRecord() {
+    private no.priv.garshol.duke.Record parseRecord() {
       RecordImpl record = new RecordImpl();
       String current = subject;
 

@@ -1,18 +1,13 @@
   
 package no.priv.garshol.duke.databases;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.NavigableMap;
-
 import no.priv.garshol.duke.Configuration;
 import no.priv.garshol.duke.Database;
 import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.Record;
+
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * An abstract database using blocking to find candidate records. It

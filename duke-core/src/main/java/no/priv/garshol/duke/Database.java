@@ -17,7 +17,7 @@ public interface Database {
   /**
    * Add the record to the index.
    */
-  public void index(Record record);
+  public void index(no.priv.garshol.duke.Record record);
 
   /**
    * Flushes all changes to disk. For in-memory databases this is a
@@ -28,13 +28,13 @@ public interface Database {
   /**
    * Look up record by identity.
    */
-  public Record findRecordById(String id);
+  public no.priv.garshol.duke.Record findRecordById(String id);
 
   /**
    * Look up potentially matching records. This method must be
    * thread-safe.
    */
-  public Collection<Record> findCandidateMatches(Record record);
+  public Collection<no.priv.garshol.duke.Record> findCandidateMatches(no.priv.garshol.duke.Record record);
   
   /**
    * Stores state to disk and closes all open resources.

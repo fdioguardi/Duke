@@ -1,21 +1,16 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import no.priv.garshol.duke.*;
 import no.priv.garshol.duke.matchers.MatchListener;
 import no.priv.garshol.duke.matchers.PrintMatchListener;
 import no.priv.garshol.duke.matchers.TestFileListener;
 import no.priv.garshol.duke.utils.LinkDatabaseUtils;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.*;
 
 /**
  * The class that actually runs the genetic algorithm.
@@ -24,7 +19,7 @@ public class GeneticAlgorithm {
   private Configuration config;
   private GeneticPopulation population;
   private Database database;
-  private Map<String, Record> secondary; // used in record linkage mode
+  private Map<String, no.priv.garshol.duke.Record> secondary; // used in record linkage mode
   private InMemoryLinkDatabase testdb;
   private double best; // best ever
   private boolean active; // true iff we are using active learning
@@ -221,7 +216,7 @@ public class GeneticAlgorithm {
       for (DataSource src : config.getDataSources(2)) {
         RecordIterator it = src.getRecords();
         while (it.hasNext()) {
-          Record r = it.next();
+          no.priv.garshol.duke.Record r = it.next();
           secondary.put(getid(r), r);
         }
       }
@@ -492,10 +487,10 @@ public class GeneticAlgorithm {
       Pair pair = f.getNext();
       if (pair == null)
         break;
-      Record r1 = database.findRecordById(pair.id1);
+      no.priv.garshol.duke.Record r1 = database.findRecordById(pair.id1);
       if (r1 == null)
         r1 = secondary.get(pair.id1);
-      Record r2 = database.findRecordById(pair.id2);
+      no.priv.garshol.duke.Record r2 = database.findRecordById(pair.id2);
 
       System.out.println();
       PrintMatchListener.prettyCompare(r1, r2, (double) pair.counter,
@@ -513,7 +508,7 @@ public class GeneticAlgorithm {
     asked += count;
   }
 
-  private String getid(Record r) {
+  private String getid(no.priv.garshol.duke.Record r) {
     for (String propname : r.getProperties()) {
       Property prop = config.getPropertyByName(propname);
       if (prop == null)
@@ -602,10 +597,10 @@ public class GeneticAlgorithm {
     }
 
     private boolean[] whoThinksThisIsTrue(String id1, String id2) {
-      Record r1 = database.findRecordById(id1);
+      no.priv.garshol.duke.Record r1 = database.findRecordById(id1);
       if (r1 == null)
         r1 = secondary.get(id1);
-      Record r2 = database.findRecordById(id2);
+      no.priv.garshol.duke.Record r2 = database.findRecordById(id2);
       if (r2 == null)
         r2 = secondary.get(id2);
 

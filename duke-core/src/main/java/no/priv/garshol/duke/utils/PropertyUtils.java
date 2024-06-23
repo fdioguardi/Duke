@@ -1,8 +1,9 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Properties;
 import no.priv.garshol.duke.DukeConfigException;
+
+import java.util.Properties;
 
 /**
  * Utilities for making Java Properties objects easier to deal with.

@@ -1,14 +1,14 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Map;
+import no.priv.garshol.duke.DukeConfigException;
+import no.priv.garshol.duke.DukeException;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
-
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.DukeConfigException;
+import java.util.Map;
 
 public class ObjectUtils {
 

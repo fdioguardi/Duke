@@ -1,8 +1,8 @@
 
 package no.priv.garshol.duke.genetic;
 
-import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Property;
 
 /**
  * Sets the high probability.

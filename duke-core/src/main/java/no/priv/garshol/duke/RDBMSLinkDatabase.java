@@ -1,6 +1,8 @@
 
 package no.priv.garshol.duke;
 
+import no.priv.garshol.duke.utils.JDBCUtils;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import no.priv.garshol.duke.utils.JDBCUtils;
 
 /**
  * An abstract SQL-based link database implementation which can can

@@ -1,26 +1,18 @@
 
 package no.priv.garshol.duke;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
+import no.priv.garshol.duke.matchers.AbstractMatchListener;
+import no.priv.garshol.duke.matchers.PrintMatchListener;
+import no.priv.garshol.duke.matchers.TestFileListener;
+import no.priv.garshol.duke.utils.*;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
-import no.priv.garshol.duke.matchers.AbstractMatchListener;
-import no.priv.garshol.duke.matchers.PrintMatchListener;
-import no.priv.garshol.duke.matchers.TestFileListener;
-import no.priv.garshol.duke.utils.CommandLineParser;
-import no.priv.garshol.duke.utils.LinkDatabaseUtils;
-import no.priv.garshol.duke.utils.LinkFileWriter;
-import no.priv.garshol.duke.utils.NTriplesWriter;
-import no.priv.garshol.duke.utils.YesNoConsole;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * Command-line interface to the engine.
@@ -188,7 +180,7 @@ public class Duke {
     for (DataSource src : sources) {
       RecordIterator it = src.getRecords();
       while (it.hasNext()) {
-        Record r = it.next();
+        no.priv.garshol.duke.Record r = it.next();
         PrintMatchListener.prettyPrint(r, props);
         System.out.println("");
       }
@@ -218,7 +210,7 @@ public class Duke {
     System.out.println(
         "  --profile             display performance statistics");
     System.out.println(
-        "  --threads=N           run processing in N parallell threads");
+        "  --threads=N           run processing in N parallel threads");
     System.out.println(
         "  --pretty              pretty display when comparing records");
     System.out.println(
@@ -293,7 +285,7 @@ public class Duke {
     public abstract void link(String id1, String id2, double confidence)
         throws IOException;
 
-    public void matches(Record r1, Record r2, double confidence) {
+    public void matches(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
       try {
         for (Property p : idprops)
           for (String id1 : r1.getValues(p.getName()))

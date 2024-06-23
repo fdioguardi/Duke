@@ -1,8 +1,6 @@
 
 package no.priv.garshol.duke.matchers;
 
-import java.util.Collection;
-
 import no.priv.garshol.duke.Record;
 
 /**

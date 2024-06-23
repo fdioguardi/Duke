@@ -1,0 +1,399 @@
+<duke>
+    <schema>
+        <threshold>0.96</threshold>
+        <!-- <maybe-threshold>0.80</maybe-threshold> -->
+        <path>indexes</path>
+        <!-- Database configuration -->
+        <database class="no.priv.garshol.duke.databases.LuceneDatabase">
+            <!-- By default there is no limitation. Setting this to 10, for example, can speed up processing dramatically  -->
+            <param name="max-search-hits" value="10" />
+            <!-- Too slow -->
+            <param name="fuzzy-search" value="false" />
+            <param name="min-relevance" value="0.5" />
+        </database>
+        <!-- Custom cleaners -->
+        <object class="no.priv.garshol.duke.cleaners.GenericValueCleaner" name="NanCleaner">
+            <param name="generic" value="nan" />
+        </object>
+        <!-- Properties -->
+        <property type="id">
+            <name>ID</name>
+        </property>
+        <property>
+            <name>TITLE</name>
+            <comparator>no.priv.garshol.duke.comparators.Levenshtein</comparator>
+            <high>0.90</high>
+            <low>0.19</low>
+        </property>
+        <property>
+            <name>DESCRIPTION</name>
+            <comparator>no.priv.garshol.duke.comparators.JaccardIndexComparator</comparator>
+            <high>0.70</high>
+            <low>0.39</low>
+        </property>
+        <property>
+            <name>PRICE</name>
+            <comparator>no.priv.garshol.duke.comparators.NumericComparator</comparator>
+            <high>0.80</high>
+            <low>0.05</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>CURRENCY</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>MAINTENANCE_FEE</name>
+            <comparator>no.priv.garshol.duke.comparators.NumericComparator</comparator>
+            <high>0.60</high>
+            <low>0.05</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>MAINTENANCE_FEE_CURRENCY</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>COVERED_RATIO</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!--    <property> -->
+        <!-- <name>TOTAL_RATIO</name> -->
+        <!-- <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!-- <low>0.4</low> -->
+        <!-- <high>0.80</high> -->
+        <!--    </property> -->
+        <!-- <property> -->
+        <!--   <name>LAND_RATIO</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>ROOM_RATIO</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>BED_RATIO</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>ADVERTISER_ID</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.WeightedLevenshtein</comparator> -->
+        <!--   <high>0.97</high> -->
+        <!--   <low>0.46</low> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>ADVERTISER_NAME</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.PersonNameComparator</comparator> -->
+        <!--   <high>0.63</high> -->
+        <!--   <low>0.40</low> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>TRANSACTION</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>PROPERTY_TYPE</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.56</high>
+            <low>0.1</low>
+        </property>
+        <property>
+            <name>PROPERTY_GROUP</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.56</high>
+            <low>0.05</low>
+        </property>
+        <property>
+            <name>AGE</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.50</high>
+            <low>0.07</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>YEAR_BUILT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>IS_NEW_PROPERTY</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>IS_FINISHED_PROPERTY</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>LATITUDE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>LONGITUDE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>COORDINATES</name>
+            <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator>
+            <high>0.80</high>
+            <low>0.20</low>
+        </property>
+        <property>
+            <name>ADDRESS</name>
+            <comparator>no.priv.garshol.duke.comparators.Levenshtein</comparator>
+            <high>0.90</high>
+            <low>0.09</low>
+        </property>
+        <property>
+            <name>DISTRICT</name>
+            <comparator>no.priv.garshol.duke.comparators.JaroWinkler</comparator>
+            <high>0.51</high>
+            <low>0.39</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>PROVINCE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.JaroWinkler</comparator> -->
+        <!--   <high>0.93</high> -->
+        <!--   <low>0.36</low> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>NEIGHBORHOOD</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.JaroWinkler</comparator> -->
+        <!--   <high>0.87</high> -->
+        <!--   <low>0.49</low> -->
+        <!-- </property> -->
+        <property>
+            <name>TOTAL_SURFACE</name>
+            <comparator>no.priv.garshol.duke.comparators.NumericComparator</comparator>
+            <high>0.67</high>
+            <low>0.1</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>TOTAL_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>COVERED_SURFACE</name>
+            <comparator>no.priv.garshol.duke.comparators.NumericComparator</comparator>
+            <high>0.55</high>
+            <low>0.09</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>COVERED_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>UNCOVERED_SURFACE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>UNCOVERED_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>LAND_SURFACE</name>
+            <comparator>no.priv.garshol.duke.comparators.NumericComparator</comparator>
+            <high>0.60</high>
+            <low>0.07</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>LAND_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>RECONSTRUCTED_TOTAL_SURFACE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>RECONSTRUCTED_TOTAL_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>RECONSTRUCTED_LAND_SURFACE</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>RECONSTRUCTED_LAND_SURFACE_UNIT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>ROOM_AMNT</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.61</high>
+            <low>0.1</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>IS_STUDIO_APARTMENT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <property>
+            <name>BATH_AMNT</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.51</high>
+            <low>0.17</low>
+        </property>
+        <property>
+            <name>GARAGE_AMNT</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.6</high>
+            <low>0.1</low>
+        </property>
+        <property>
+            <name>BED_AMNT</name>
+            <comparator>no.priv.garshol.duke.comparators.ExactComparator</comparator>
+            <high>0.6</high>
+            <low>0.1</low>
+        </property>
+        <!-- <property> -->
+        <!--   <name>TOILET_AMNT</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>ORIENTATION</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>DISPOSITION</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+        <!-- <property> -->
+        <!--   <name>LUMINOSITY</name> -->
+        <!--   <comparator>no.priv.garshol.duke.comparators.GeopositionComparator</comparator> -->
+        <!--   <low>0.4</low> -->
+        <!--   <high>0.80</high> -->
+        <!-- </property> -->
+    </schema>
+    <csv>
+	<param name="input-file" value="/opt/duke/input/input.csv" />
+        <column name="coordinates" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="COORDINATES" />
+        <column name="url" property="ID" />
+        <column name="title" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="TITLE" />
+        <column name="description" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="DESCRIPTION" />
+        <column name="price" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner NanCleaner" property="PRICE" />
+        <!-- <column name="currency" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="CURRENCY"/> -->
+        <column name="maintenance_fee" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner NanCleaner" property="MAINTENANCE_FEE" />
+        <!-- <column name="maintenance_fee_currency" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="MAINTENANCE_FEE_CURRENCY"/> -->
+        <!-- <column name="covered_ratio" property="COVERED_RATIO"/> -->
+        <!-- <column name="total_ratio" property="TOTAL_RATIO"/> -->
+        <!-- <column name="land_ratio" property="LAND_RATIO"/> -->
+        <!-- <column name="room_ratio" property="ROOM_RATIO"/> -->
+        <!-- <column name="bed_ratio" property="BED_RATIO"/> -->
+        <!-- <column name="advertiser_id" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="ADVERTISER_ID"/> -->
+        <!-- <column name="advertiser_name" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="ADVERTISER_NAME"/> -->
+        <!-- <column name="transaction" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="TRANSACTION"/> -->
+        <column name="property_type" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="PROPERTY_TYPE" />
+        <column name="property_group" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="PROPERTY_GROUP" />
+        <column name="age" property="AGE" />
+        <!-- <column name="year_built" property="YEAR_BUILT"/> -->
+        <!-- <column name="is_new_property" property="IS_NEW_PROPERTY"/> -->
+        <!-- <column name="is_finished_property" property="IS_FINISHED_PROPERTY"/> -->
+        <!-- <column name="latitude" property="LATITUDE"/> -->
+        <!-- <column name="longitude" property="LONGITUDE"/> -->
+        <column name="coordinates" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="COORDINATES" />
+        <column name="address" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="ADDRESS" />
+        <column name="district" cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" property="DISTRICT" />
+        <!-- <column name="province" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="PROVINCE"/> -->
+        <!-- <column name="neighborhood" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="NEIGHBORHOOD"/> -->
+        <column name="total_surface" property="TOTAL_SURFACE" />
+        <!-- <column name="total_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="TOTAL_SURFACE_UNIT"/> -->
+        <column name="covered_surface" property="COVERED_SURFACE" />
+        <!-- <column name="covered_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="COVERED_SURFACE_UNIT"/> -->
+        <!-- <column name="uncovered_surface" -->
+        <!--  property="UNCOVERED_SURFACE"/> -->
+        <!-- <column name="uncovered_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="UNCOVERED_SURFACE_UNIT"/> -->
+        <column name="land_surface" property="LAND_SURFACE" />
+        <!-- <column name="land_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="LAND_SURFACE_UNIT"/> -->
+        <!-- <column name="reconstructed_total_surface" -->
+        <!--  property="RECONSTRUCTED_TOTAL_SURFACE"/> -->
+        <!-- <column name="reconstructed_total_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="RECONSTRUCTED_TOTAL_SURFACE_UNIT"/> -->
+        <!-- <column name="reconstructed_land_surface" -->
+        <!--  property="RECONSTRUCTED_LAND_SURFACE"/> -->
+        <!-- <column name="reconstructed_land_surface_unit" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="RECONSTRUCTED_LAND_SURFACE_UNIT"/> -->
+        <column name="room_amnt" property="ROOM_AMNT" />
+        <!-- <column name="is_studio_apartment" property="IS_STUDIO_APARTMENT"/> -->
+        <column name="bath_amnt" property="BATH_AMNT" />
+        <column name="garage_amnt" property="GARAGE_AMNT" />
+        <column name="bed_amnt" property="BED_AMNT" />
+        <!-- <column name="toilet_amnt" property="TOILET_AMNT"/> -->
+        <!-- <column name="orientation" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="ORIENTATION"/> -->
+        <!-- <column name="disposition" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="DISPOSITION"/> -->
+        <!-- <column name="luminosity" -->
+        <!--  cleaner="no.priv.garshol.duke.cleaners.LowerCaseNormalizeCleaner" -->
+        <!--  property="LUMINOSITY"/> -->
+    </csv>
+</duke>

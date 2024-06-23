@@ -1,13 +1,13 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.Comparator;
 import no.priv.garshol.duke.Configuration;
+import no.priv.garshol.duke.Property;
 import no.priv.garshol.duke.utils.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A configuration created by the genetic algorithm.

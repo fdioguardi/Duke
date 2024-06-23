@@ -1,8 +1,6 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Collection;
-
 /**
  * Immutable representation of a link between two identities.
  */

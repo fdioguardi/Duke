@@ -1,19 +1,12 @@
 
 package no.priv.garshol.duke.matchers;
 
+import no.priv.garshol.duke.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import no.priv.garshol.duke.Configuration;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.Link;
-import no.priv.garshol.duke.LinkDatabase;
-import no.priv.garshol.duke.LinkKind;
-import no.priv.garshol.duke.LinkStatus;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.Record;
 
 /**
  * Maintains a LinkDatabase of the recorded matches. Assumes that the
@@ -26,7 +19,7 @@ import no.priv.garshol.duke.Record;
 public class LinkDatabaseMatchListener extends AbstractMatchListener {
   private Configuration config;
   private LinkDatabase linkdb;
-  private Record current;
+  private no.priv.garshol.duke.Record current;
   private Collection<Link> curlinks;
 
   public LinkDatabaseMatchListener(Configuration config, LinkDatabase linkdb) {
@@ -39,7 +32,7 @@ public class LinkDatabaseMatchListener extends AbstractMatchListener {
   // on a new record, and call startRecord_() and endRecord_()
   // accordingly.
 
-  public void matches(Record r1, Record r2, double confidence) {
+  public void matches(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
     if (r1 != current) {
       // we've finished processing the previous record, so make the calls
       if (current != null)
@@ -53,7 +46,7 @@ public class LinkDatabaseMatchListener extends AbstractMatchListener {
                           confidence));
   }
 
-  public void matchesPerhaps(Record r1, Record r2, double confidence) {
+  public void matchesPerhaps(no.priv.garshol.duke.Record r1, no.priv.garshol.duke.Record r2, double confidence) {
     if (r1 != current) {
       // we've finished processing the previous record, so make the calls
       if (current != null)
@@ -67,7 +60,7 @@ public class LinkDatabaseMatchListener extends AbstractMatchListener {
                           confidence));
   }
 
-  public void noMatchFor(Record record) {
+  public void noMatchFor(no.priv.garshol.duke.Record record) {
     // this is the only call we'll get for this record. it means the
     // previous record has ended, and this one has begun (and will end
     // with the next call, whatever it is)
@@ -78,7 +71,7 @@ public class LinkDatabaseMatchListener extends AbstractMatchListener {
   }
 
   // this method is called from the event methods
-  public void startRecord_(Record r) {
+  public void startRecord_(no.priv.garshol.duke.Record r) {
     current = r;
     curlinks = new ArrayList();
   }
@@ -147,7 +140,7 @@ public class LinkDatabaseMatchListener extends AbstractMatchListener {
     linkdb.commit();
   }
 
-  private String getIdentity(Record r) {
+  private String getIdentity(no.priv.garshol.duke.Record r) {
     for (Property p : config.getIdentityProperties()) {
       Collection<String> vs = r.getValues(p.getName());
       if (vs == null)

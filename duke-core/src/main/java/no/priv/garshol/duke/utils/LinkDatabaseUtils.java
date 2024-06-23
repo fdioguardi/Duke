@@ -1,17 +1,11 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.io.Reader;
+import no.priv.garshol.duke.*;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.BufferedReader;
-
-import no.priv.garshol.duke.Link;
-import no.priv.garshol.duke.LinkKind;
-import no.priv.garshol.duke.LinkStatus;
-import no.priv.garshol.duke.LinkDatabase;
-import no.priv.garshol.duke.DukeException;
-import no.priv.garshol.duke.InMemoryLinkDatabase;
+import java.io.Reader;
 
 /**
  * Utilities for dealing with link databases.

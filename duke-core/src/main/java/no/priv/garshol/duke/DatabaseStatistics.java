@@ -1,16 +1,12 @@
 
 package no.priv.garshol.duke;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import no.priv.garshol.duke.databases.AbstractBlockingDatabase;
 import no.priv.garshol.duke.databases.KeyFunction;
 import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Outputs statistics on the contents of the Database in order to make

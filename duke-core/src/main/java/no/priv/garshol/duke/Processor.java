@@ -1,21 +1,17 @@
 
 package no.priv.garshol.duke;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.io.Writer;
-import java.io.PrintWriter;
-
+import no.priv.garshol.duke.matchers.AbstractMatchListener;
 import no.priv.garshol.duke.matchers.MatchListener;
 import no.priv.garshol.duke.matchers.PrintMatchListener;
-import no.priv.garshol.duke.matchers.AbstractMatchListener;
-import no.priv.garshol.duke.utils.Utils;
 import no.priv.garshol.duke.utils.DefaultRecordIterator;
+import no.priv.garshol.duke.utils.Utils;
+
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.Comparator;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * The class that implements the actual deduplication and record
@@ -216,10 +212,10 @@ public class Processor {
 
       RecordIterator it2 = source.getRecords();
       try {
-        Collection<Record> batch = new ArrayList();
+        Collection<no.priv.garshol.duke.Record> batch = new ArrayList();
         long start = System.currentTimeMillis();
         while (it2.hasNext()) {
-          Record record = it2.next();
+          no.priv.garshol.duke.Record record = it2.next();
           batch.add(record);
           count++;
           if (count % batch_size == 0) {
@@ -247,13 +243,13 @@ public class Processor {
    * Deduplicates a newly arrived batch of records. The records may
    * have been seen before.
    */
-  public void deduplicate(Collection<Record> records) {
+  public void deduplicate(Collection<no.priv.garshol.duke.Record> records) {
     logger.info("Deduplicating batch of " + records.size() + " records");
     batchReady(records.size());
 
     // prepare
     long start = System.currentTimeMillis();
-    for (Record record : records)
+    for (no.priv.garshol.duke.Record record : records)
       database1.index(record);
 
     database1.commit();
@@ -265,22 +261,22 @@ public class Processor {
     batchDone();
   }
 
-  private void match(Collection<Record> records, boolean matchall) {
+  private void match(Collection<no.priv.garshol.duke.Record> records, boolean matchall) {
     if (threads == 1)
-      for (Record record : records)
+      for (no.priv.garshol.duke.Record record : records)
         match(1, record, matchall);
     else
       threadedmatch(records, matchall);
   }
 
-  private void threadedmatch(Collection<Record> records, boolean matchall) {
+  private void threadedmatch(Collection<no.priv.garshol.duke.Record> records, boolean matchall) {
     // split batch into n smaller batches
     MatchThread[] threads = new MatchThread[this.threads];
     for (int ix = 0; ix < threads.length; ix++)
       threads[ix] = new MatchThread(ix, records.size() / threads.length,
                                     matchall);
     int ix = 0;
-    for (Record record : records)
+    for (no.priv.garshol.duke.Record record : records)
       threads[ix++ % threads.length].addRecord(record);
 
     // kick off threads
@@ -332,14 +328,14 @@ public class Processor {
     startProcessing();
 
     // start with source 1
-    for (Collection<Record> batch : makeBatches(sources1, batch_size)) {
+    for (Collection<no.priv.garshol.duke.Record> batch : makeBatches(sources1, batch_size)) {
       index(1, batch);
       if (hasTwoDatabases())
         linkBatch(2, batch, matchall);
     }
 
     // then source 2
-    for (Collection<Record> batch : makeBatches(sources2, batch_size)) {
+    for (Collection<no.priv.garshol.duke.Record> batch : makeBatches(sources2, batch_size)) {
       if (hasTwoDatabases())
         index(2, batch);
       linkBatch(1, batch, matchall);
@@ -400,7 +396,7 @@ public class Processor {
     for (DataSource source : sources) {
       source.setLogger(logger);
 
-      Collection<Record> batch = new ArrayList(batch_size);
+      Collection<no.priv.garshol.duke.Record> batch = new ArrayList(batch_size);
       RecordIterator it = source.getRecords();
       while (it.hasNext()) {
         batch.add(it.next());
@@ -418,9 +414,9 @@ public class Processor {
     endProcessing();
   }
 
-  private void linkBatch(int dbno, Collection<Record> batch, boolean matchall) {
+  private void linkBatch(int dbno, Collection<no.priv.garshol.duke.Record> batch, boolean matchall) {
     batchReady(batch.size());
-    for (Record r : batch)
+    for (no.priv.garshol.duke.Record r : batch)
       match(dbno, r, matchall);
     batchDone();
   }
@@ -448,7 +444,7 @@ public class Processor {
 
       RecordIterator it2 = source.getRecords();
       while (it2.hasNext()) {
-        Record record = it2.next();
+        no.priv.garshol.duke.Record record = it2.next();
         if (logger.isDebugEnabled())
           logger.debug("Indexing record " + record);
         thedb.index(record);
@@ -468,10 +464,10 @@ public class Processor {
    * <em>not</em> do any matching.
    * @since 1.3
    */
-  public void index(int dbno, Collection<Record> batch) {
+  public void index(int dbno, Collection<no.priv.garshol.duke.Record> batch) {
     Database thedb = getDB(dbno);
 
-    for (Record r : batch) {
+    for (no.priv.garshol.duke.Record r : batch) {
       if (logger.isDebugEnabled())
         logger.debug("Indexing record " + r);
       thedb.index(r);
@@ -486,9 +482,9 @@ public class Processor {
     return comparisons;
   }
 
-  private void match(int dbno, Record record, boolean matchall) {
+  private void match(int dbno, no.priv.garshol.duke.Record record, boolean matchall) {
     long start = System.currentTimeMillis();
-    Collection<Record> candidates = getDB(dbno).findCandidateMatches(record);
+    Collection<no.priv.garshol.duke.Record> candidates = getDB(dbno).findCandidateMatches(record);
     searching += System.currentTimeMillis() - start;
     if (logger.isDebugEnabled())
       logger.debug("Matching record " +
@@ -521,10 +517,10 @@ public class Processor {
   /**
    * Passes on all matches found.
    */
-  protected void compareCandidatesSimple(Record record,
-                                         Collection<Record> candidates) {
+  protected void compareCandidatesSimple(no.priv.garshol.duke.Record record,
+                                         Collection<no.priv.garshol.duke.Record> candidates) {
     boolean found = false;
-    for (Record candidate : candidates) {
+    for (no.priv.garshol.duke.Record candidate : candidates) {
       if (isSameAs(record, candidate))
         continue;
 
@@ -545,10 +541,10 @@ public class Processor {
   /**
    * Passes on only the best match for each record.
    */
-  protected void compareCandidatesBest(Record record,
-                                         Collection<Record> candidates) {
+  protected void compareCandidatesBest(no.priv.garshol.duke.Record record,
+                                         Collection<no.priv.garshol.duke.Record> candidates) {
     double max = 0.0;
-    Record best = null;
+    no.priv.garshol.duke.Record best = null;
 
     // go through all candidates, and find the best
     for (Record candidate : candidates) {

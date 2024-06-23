@@ -1,10 +1,10 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Map;
-import java.util.HashMap;
-
 import no.priv.garshol.duke.DukeConfigException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CommandLineParser {
   private Map<String, Option> options;

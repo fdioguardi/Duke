@@ -1,10 +1,10 @@
 
 package no.priv.garshol.duke.databases;
 
-import java.util.Map;
-import java.util.HashMap;
-
 import no.priv.garshol.duke.Record;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple key value store that keeps all data in memory.

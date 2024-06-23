@@ -1,0 +1,30 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: duke
+  name: duke
+  namespace: ovs-computo
+spec:
+  strategy:
+    type: Rolling
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        name: duke
+    spec:
+      containers:
+        - name: duke
+          image: fdioguardi/duke:latest
+          command:
+            - /bin/sh
+            - "-c"
+            - while true; do sleep 2000000; done
+          volumeMounts:
+            - name: pv-duke-volume
+              mountPath: /opt/duke
+      volumes:
+        - name: pv-duke-volume
+          persistentVolumeClaim:
+            claimName: pv-duke-storage

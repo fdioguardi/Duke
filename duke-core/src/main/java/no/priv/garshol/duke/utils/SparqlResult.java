@@ -1,8 +1,8 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the result of a SPARQL query.

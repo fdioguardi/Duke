@@ -9,7 +9,7 @@ import java.util.Iterator;
  * extra methods for resource management.
  */
 public abstract class RecordIterator
-  implements Iterator<Record>, Closeable {
+  implements Iterator<no.priv.garshol.duke.Record>, Closeable {
 
   /**
    * Releases any resources held by this iterator, and cleans up any

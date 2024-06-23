@@ -1,18 +1,9 @@
 
 package no.priv.garshol.duke.databases;
 
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.NavigableMap;
-
 import no.priv.garshol.duke.Record;
-import no.priv.garshol.duke.Property;
-import no.priv.garshol.duke.Database;
-import no.priv.garshol.duke.Configuration;
+
+import java.util.*;
 
 /**
  * A database using blocking to find candidate records. It's in-memory

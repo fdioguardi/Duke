@@ -1,11 +1,11 @@
 
 package no.priv.garshol.duke.genetic;
 
-import java.util.List;
+import no.priv.garshol.duke.Configuration;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
-import no.priv.garshol.duke.Configuration;
+import java.util.List;
 
 /**
  * Keeps track of the population.

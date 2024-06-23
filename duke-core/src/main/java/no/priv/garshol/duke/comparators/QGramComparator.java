@@ -1,12 +1,11 @@
 
 package no.priv.garshol.duke.comparators;
 
-import java.util.Set;
-import java.util.HashSet;
 import no.priv.garshol.duke.Comparator;
-import no.priv.garshol.duke.utils.ObjectUtils;
-
 import no.priv.garshol.duke.DukeConfigException;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An implementation of q-grams comparison that can tokenize a few

@@ -1,9 +1,10 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.Map;
-import java.util.HashMap;
 import no.priv.garshol.duke.Cleaner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A cleaner that removes HTML-style entity references, such as

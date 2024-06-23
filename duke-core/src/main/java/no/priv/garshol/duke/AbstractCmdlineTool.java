@@ -1,12 +1,11 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Collection;
-import java.io.IOException;
-
+import no.priv.garshol.duke.utils.CommandLineParser;
 import org.xml.sax.SAXException;
 
-import no.priv.garshol.duke.utils.CommandLineParser;
+import java.io.IOException;
+import java.util.Collection;
 
 /**
  * INTERNAL: Shared code between the simplest command-line tools.

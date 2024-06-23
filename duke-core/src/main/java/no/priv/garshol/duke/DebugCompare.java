@@ -1,20 +1,11 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.io.IOException;
-import java.io.Writer;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-
+import no.priv.garshol.duke.utils.Utils;
 import org.xml.sax.SAXException;
 
-import no.priv.garshol.duke.utils.Utils;
+import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Compare two specific records to understand their scores.
@@ -29,13 +20,13 @@ public class DebugCompare extends AbstractCmdlineTool {
     argv = init(argv, 3, 3, null);
 
     // load records
-    Record r1 = database.findRecordById(argv[1]);
+    no.priv.garshol.duke.Record r1 = database.findRecordById(argv[1]);
     if (r1 == null) {
       System.err.println("Couldn't find record for '" + argv[1] + "'");
       System.err.println("Consider using --reindex");
       return;
     }
-    Record r2 = database.findRecordById(argv[2]);
+    no.priv.garshol.duke.Record r2 = database.findRecordById(argv[2]);
     if (r2 == null) {
       System.err.println("Couldn't find record for '" + argv[2] + "'");
       System.err.println("Consider using --reindex");

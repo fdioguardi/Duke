@@ -1,12 +1,12 @@
 
 package no.priv.garshol.duke.utils;
 
-import java.util.Stack;
-import java.io.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.ParserFactory;
-
 import no.priv.garshol.duke.DukeException;
+import org.xml.sax.AttributeList;
+import org.xml.sax.DocumentHandler;
+import org.xml.sax.Locator;
+
+import java.io.*;
 
 /**
  * A SAX document handler that writes pretty-printed XML to a Writer.

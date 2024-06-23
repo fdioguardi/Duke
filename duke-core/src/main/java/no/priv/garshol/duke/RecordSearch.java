@@ -1,15 +1,13 @@
 
 package no.priv.garshol.duke;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.io.IOException;
-
+import no.priv.garshol.duke.matchers.PrintMatchListener;
+import no.priv.garshol.duke.utils.CommandLineParser;
 import org.xml.sax.SAXException;
 
-import no.priv.garshol.duke.RecordImpl;
-import no.priv.garshol.duke.utils.CommandLineParser;
-import no.priv.garshol.duke.matchers.PrintMatchListener;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Search for records and display the matching ones.
@@ -34,9 +32,9 @@ public class RecordSearch extends AbstractCmdlineTool {
     prototype.addValue(argv[1], argv[2]);
 
     // search
-    Collection<Record> records = database.findCandidateMatches(prototype);
+    Collection<no.priv.garshol.duke.Record> records = database.findCandidateMatches(prototype);
     int hitno = 1;
-    for (Record record : records) {
+    for (no.priv.garshol.duke.Record record : records) {
       PrintMatchListener.prettyPrint(record, config.getProperties());
       System.out.println();
       if (hitno++ == max_hits)

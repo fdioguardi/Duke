@@ -1,8 +1,8 @@
 
 package no.priv.garshol.duke.cleaners;
 
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Helper class used by AbstractRuleBasedCleaner.
